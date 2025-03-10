@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CheckStyle-IDEA" serialisationVersion="2">
-    <checkstyleVersion>10.18.1</checkstyleVersion>
-    <scanScope>JavaOnly</scanScope>
+    <checkstyleVersion>10.21.2</checkstyleVersion>
+    <scanScope>JavaOnlyWithTests</scanScope>
     <option name="thirdPartyClasspath" />
-    <option name="activeLocationIds" />
+    <option name="activeLocationIds">
+      <option value="7da28dc9-6c77-4dfc-9cc9-052fafe76d19" />
+    </option>
     <option name="locations">
       <list>
         <ConfigurationLocation id="bundled-sun-checks" type="BUNDLED" scope="All" description="Sun Checks">(bundled)</ConfigurationLocation>
         <ConfigurationLocation id="bundled-google-checks" type="BUNDLED" scope="All" description="Google Checks">(bundled)</ConfigurationLocation>
+        <ConfigurationLocation id="7da28dc9-6c77-4dfc-9cc9-052fafe76d19" type="LOCAL_FILE" scope="All" description="CS5004">$USER_HOME$/Downloads/northeastern_checks-1.xml</ConfigurationLocation>
       </list>
     </option>
   </component>
