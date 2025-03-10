@@ -8,7 +8,7 @@ import java.util.Random;
  */
 public class BattleshipModelImpl implements BattleshipModel {
   private static final int GRID_SIZE = 10;
-  private static final int MAX_GUESSES = 5;
+  private static final int MAX_GUESSES = 50;
 
   private final CellState[][] cellGrid;
   private final ShipType[][] shipGrid;
@@ -48,20 +48,20 @@ public class BattleshipModelImpl implements BattleshipModel {
     shipStatus[3] = ShipType.DESTROYER;
     shipStatus[4] = ShipType.PATROL_BOAT;
 
-    // Cheat mode for testing
-    System.out.println("\nShip Grid showed for testing:");
-    System.out.print("  ");
-    for (int i = 0; i < shipGrid[0].length; i++) {
-      System.out.print(i + " ");
-    }
-    System.out.println();
-    for (int i = 0; i < shipGrid.length; i++) {
-      System.out.print((char) ('A' + i) + " ");
-      for (int j = 0; j < shipGrid[i].length; j++) {
-        System.out.print(shipGrid[i][j] == null ? "- " : shipGrid[i][j].getSymbol() + " ");
-      }
-      System.out.println();
-    }
+    /* Cheat mode for testing */
+    // System.out.println("\nShip Grid showed for testing:");
+    // System.out.print("  ");
+    // for (int i = 0; i < shipGrid[0].length; i++) {
+    //   System.out.print(i + " ");
+    // }
+    // System.out.println();
+    // for (int i = 0; i < shipGrid.length; i++) {
+    //   System.out.print((char) ('A' + i) + " ");
+    //   for (int j = 0; j < shipGrid[i].length; j++) {
+    //     System.out.print(shipGrid[i][j] == null ? "- " : shipGrid[i][j].getSymbol() + " ");
+    //   }
+    //   System.out.println();
+    // }
   }
 
   private void placeShipsRandomly() {
@@ -122,14 +122,14 @@ public class BattleshipModelImpl implements BattleshipModel {
 
   @Override
   public boolean makeGuess(int row, int col) {
+    if (gameOver) {
+      throw new IllegalStateException("Game is already over.");
+    }
     if (row < 0 || row >= GRID_SIZE || col < 0 || col >= GRID_SIZE) {
       throw new IllegalArgumentException("Coordinates out of bounds.");
     }
     if (cellGrid[row][col] != CellState.UNKNOWN) {
       throw new IllegalArgumentException("Cell already guessed.");
-    }
-    if (gameOver) {
-      throw new IllegalStateException("Game is already over.");
     }
 
     guessCount++;
@@ -204,9 +204,6 @@ public class BattleshipModelImpl implements BattleshipModel {
 
   @Override
   public ShipType[][] getShipGrid() {
-    if (!gameOver) {
-      throw new IllegalStateException("Game is not over.");
-    }
     ShipType[][] copy = new ShipType[GRID_SIZE][GRID_SIZE];
     for (int i = 0; i < GRID_SIZE; i++) {
       System.arraycopy(shipGrid[i], 0, copy[i], 0, GRID_SIZE);
