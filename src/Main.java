@@ -16,7 +16,7 @@ public class Main {
    */
   public static void main(String[] args) {
     BattleshipModel model = new BattleshipModelImpl();
-    SwingBattleshipView view = new SwingBattleshipView();
+    BattleshipView view = new SwingBattleshipView();
     BattleshipController controller = new SwingBattleshipController(model, view);
 
     controller.playGame();
